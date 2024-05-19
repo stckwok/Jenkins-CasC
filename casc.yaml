@@ -1,0 +1,43 @@
+jenkins:
+  systemMessage: "This Jenkins instance is configured by the Configuration as Code plugin"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: ${JENKINS_ADMIN_ID}
+         password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    projectMatrix:
+      entries:
+        - group:
+            name: "authenticated"
+            permissions:
+            - "Agent/Build"
+            - "Credentials/View"
+            - "Job/Build"
+            - "Job/Read"
+            - "Run/Delete"
+            - "View/Read"
+        - user:
+            name: "admin"
+            permissions:
+            - "Overall/Administer"
+        - user:
+            name: "anonymous"
+            permissions:
+            - "Agent/Build"
+            - "Job/Build"
+            - "Job/Read"
+            - "View/Read"
+
+  remotingSecurity:
+    enabled: true
+
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+unclassified:
+  location:
+    url: http://${NODE_URL}:8080/
