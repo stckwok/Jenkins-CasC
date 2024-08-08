@@ -19,7 +19,7 @@ pipeline {
                 sh 'source venv/Scripts/activate'
                 sh 'python3 -m pip install --upgrade pip'
                 sh 'pip install -r requirements.txt'
-                sh 'pytest'
+                sh 'pytest -v'
             }
         }
     }
