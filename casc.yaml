@@ -12,11 +12,8 @@ jenkins:
         - group:
             name: "authenticated"
             permissions:
-            - "Agent/Build"
-            - "Credentials/View"
-            - "Job/Build"
+            - "Overall/Read"
             - "Job/Read"
-            - "Run/Delete"
             - "View/Read"
         - user:
             name: "admin"
@@ -25,10 +22,7 @@ jenkins:
         - user:
             name: "anonymous"
             permissions:
-            - "Agent/Build"
-            - "Job/Build"
-            - "Job/Read"
-            - "View/Read"
+            - "Overall/Read"
 
   remotingSecurity:
     enabled: true
